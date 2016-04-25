@@ -24,34 +24,26 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
+#ifndef D_common_H
+#define D_common_H
+
+#ifndef BOOL
+#define BOOL int
+#endif
+
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+#ifndef NULL
+#define NULL 0
+#endif
+
 #endif

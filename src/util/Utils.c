@@ -24,34 +24,16 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
-
+#include "Utils.h"
+#include <stdio.h>
 
 #if 0 
-void RunAllTests(void)
+static int FormatOutput_Impl(const char * format, ...)
 {
-    RUN_TEST_GROUP(LedDriver);
+    /* snip */
 }
+
+int (*FormatOutput)(const char * format, ...) = FormatOutput_Impl;
 #endif 
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+int (*FormatOutput)(const char * format, ...) = printf;

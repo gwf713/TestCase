@@ -24,34 +24,20 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#ifndef D_Thread_H
+#define D_Thread_H
+
+typedef struct ThreadStruct * Thread;
+typedef void * (*ThreadEntryFunction)(void *);
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+Thread Thread_Create(ThreadEntryFunction f, void * parameter);
+void Thread_Start(Thread);
+void Thread_Destroy(Thread);
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+void Thread_Join(Thread, void **result);
+void * Thread_Result(Thread);
+void MyOs_Init(int maxThreads);
+void MyOs_ShutDown(void);
+
+#endif  /* D_Thread_H */

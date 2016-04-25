@@ -24,34 +24,32 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
 
+#ifndef D_m28w160ect_H
+#define D_m28w160ect_H
 
-#if 0 
-void RunAllTests(void)
+typedef enum
 {
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+	CommandRegister = 0x0,
+	StatusRegister = 0x0
+} Flash_Registers;
 
-#if 1 
-void RunAllTests(void)
+typedef enum
 {
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
+	ProgramCommand = 0x40,
+	Reset = 0xff
+} Flash_Command;
+
+typedef enum
 {
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+	ReadyBit = 1<<7,
+	EraseSuspendBit = 1<<6,
+	EraseErrorBit = 1<<5,
+	ProgramErrorBit = 1<<4,
+	VppErrorBit = 1<<3,
+	ProgramSuspendBit = 1<<2,
+	BlockProtectionErrorBit = 1<<1,
+	ReservedBit = 1
+} StatusRegisterBits;
+
+#endif /* _m28w160ect_H */

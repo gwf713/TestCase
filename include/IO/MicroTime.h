@@ -24,34 +24,12 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#ifndef D_MicroTime_H
+#define D_MicroTime_H
 
+#include <stdint.h>
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+uint32_t MicroTime_Get(void);
+void MicroTime_Delay(uint32_t);
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+#endif  /* D_MicroTime_H */

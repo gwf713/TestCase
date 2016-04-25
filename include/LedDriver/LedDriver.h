@@ -24,34 +24,53 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
 
+#ifndef D_LedDriver_H
+#define D_LedDriver_H
+#include <stdint.h>
+
+#define TRUE 1
+#define FALSE 0
+typedef int BOOL;
+
+
+void LedDriver_Create(uint16_t * ledsAddress);
+void LedDriver_Destroy(void);
+
+void LedDriver_TurnOn(int ledNumber);
+void LedDriver_TurnOff(int ledNumber);
+void LedDriver_TurnAllOn(void);
+void LedDriver_TurnAllOff(void);
+BOOL LedDriver_IsOn(int ledNumber);
+BOOL LedDriver_IsOff(int ledNumber);
+#endif  /* D_LedDriver_H */
+
+/*
+ * Intermediate examples below this comment
+ */
 
 #if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+#ifndef D_LedDriver_H
+#define D_LedDriver_H
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
+void LedDriver_Create(void);
+void LedDriver_Destroy(void);
+
+#endif  /* D_LedDriver_H */
+
 #if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
+#ifndef D_LedDriver_H
+#define D_LedDriver_H
+
+void LedDriver_Create(void);
+void LedDriver_Destroy(void);
+void LedDriver_TurnOn(int ledNumber);
+void LedDriver_TurnOff(int ledNumber);
+
+#endif
+
+
+#endif  /* D_LedDriver_H */
+
+
 #endif

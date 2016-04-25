@@ -27,7 +27,8 @@
 
 #include "unity_fixture.h"
 #include <stdio.h>
-#include <memory.h>
+#include <string.h>
+//#include <memory.h>
 
 TEST_GROUP(sprintf);
 

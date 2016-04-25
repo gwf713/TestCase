@@ -24,34 +24,69 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#include "Thread.h"
+#include <windows.h>
+#include "common.h"
 
+typedef struct ThreadStruct
+{
+    HANDLE threadHandle;
+    ThreadEntryFunction entry;
+    void * parameter;
+    BOOL started;
+} ThreadStruct;
 
-#if 0 
-void RunAllTests(void)
+static DWORD WINAPI Win32ThreadEntry(LPVOID param)
 {
-    RUN_TEST_GROUP(LedDriver);
+    Thread thread = (Thread)param;
+    return (UINT)thread->entry(thread->parameter);
 }
-#endif 
 
-#if 1 
-void RunAllTests(void)
+Thread Thread_Create(ThreadEntryFunction entry, void * parameter)
 {
-    RUN_TEST_GROUP(sprintf);
+    DWORD threadId;
+    Thread self = calloc(1, sizeof(ThreadStruct));
+    self->entry = entry;
+    self->parameter = parameter;
+    self->threadHandle = CreateThread(0, 0, Win32ThreadEntry, self,
+            CREATE_SUSPENDED, &threadId);
+    return self;
 }
-#endif 
-#if 0 
-void RunAllTests(void)
+
+void Thread_Destroy(Thread self)
 {
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
+    if (self->started)
+    {
+        WaitForSingleObject(self->threadHandle, INFINITE);
+        self->started = FALSE;
+    }
+    CloseHandle(self->threadHandle);
+    free(self);
 }
-#endif
+
+void Thread_Start(Thread self)
+{
+    self->started = TRUE;
+    ResumeThread(self->threadHandle);
+}
+
+void Thread_Exit(void * result)
+{
+    /*
+     * We'll need a better solution
+     * to the return result if ints and
+     * pointer are different. Test pass
+     * now, so they are the same.
+     */
+    ExitThread((UINT) result);
+}
+
+void Thread_Join(Thread self, void ** result)
+{
+    if (self->started)
+    {
+        WaitForSingleObject(self->threadHandle, INFINITE);
+        self->started = FALSE;
+    }
+    GetExitCodeThread(self->threadHandle, (DWORD *) result);
+}

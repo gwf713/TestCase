@@ -24,34 +24,24 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
 
+#ifndef D_Flash_H
+#define D_Flash_H
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+#include "IO.h"
 
-#if 1 
-void RunAllTests(void)
+void Flash_Create(void);
+void Flash_Destroy(void);
+int Flash_Write(ioAddress offset, ioData data);
+
+typedef enum
 {
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+	FLASH_SUCCESS = 0,
+	FLASH_VPP_ERROR,
+	FLASH_PROGRAM_ERROR,
+	FLASH_PROTECTED_BLOCK_ERROR,
+	FLASH_UNKNOWN_PROGRAM_ERROR,
+	FLASH_READ_BACK_ERROR,
+	FLASH_TIMEOUT_ERROR
+} FlashStatus;
+#endif  /* D_Flash_H */

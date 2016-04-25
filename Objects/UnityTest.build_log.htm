@@ -1,0 +1,95 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.15
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: ge Gwf713, ht, LIC=X96AR-KBLBP-CWA2K-ZW27W-VGY90-LS7N2
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Standard  Version: 5.15.0
+Toolchain Path:  D:\Program Files\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 2 (build 169)
+Assembler:       Armasm.exe V5.05 update 2 (build 169)
+Linker/Locator:  ArmLink.exe V5.05 update 2 (build 169)
+Library Manager: ArmAr.exe V5.05 update 2 (build 169)
+Hex Converter:   FromElf.exe V5.05 update 2 (build 169)
+CPU DLL:         SARMCM3.DLL V5.15.0
+Dialog DLL:      DCM.DLL V1.13.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.15.0_KEIL
+Dialog DLL:      TCM.DLL V1.14.5.0
+ 
+<h2>Project:</h2>
+F:\TDD_Fold\TDD_Practise\UnityTest\UnityTest.uvprojx
+Project File Date:  04/25/2016
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.05 update 2 (build 169)', folder: 'D:\Program Files\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Unity'
+compiling AllTests.c...
+compiling main.c...
+compiling unity_fixture.c...
+compiling unity.c...
+Unity\src\unity.c(174): warning:  #61-D: integer operation result is out of range
+      if (number_to_print == (1l << (
+NITY_LONG_WIDTH-1)))
+Unity\src\unity.c: 1 warning, 0 errors
+compiling RuntimeErrorStub.c...
+TestCase\mocks\RuntimeErrorStub.c(31): warning:  #550-D: variable "file" was set but never used
+  static const char * file = 0;
+TestCase\mocks\RuntimeErrorStub.c(32): warning:  #550-D: variable "line" was set but never used
+  static int line = -1;
+TestCase\mocks\RuntimeErrorStub.c: 2 warnings, 0 errors
+compiling SprintfTest.c...
+compiling SprintfTestRunner.c...
+compiling LedDriverTest.c...
+compiling LedDriverTestRunner.c...
+compiling LedDriver.c...
+compiling retarget_io.c...
+compiling system_stm32f4xx.c...
+linking...
+Program Size: Code=10196 RO-data=1228 RW-data=72 ZI-data=2984  
+".\Objects\UnityTest.axf" - 0 Error(s), 3 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM::CMSIS:CORE:4.3.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 4.3.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.ARM_Compiler.1.0.0.pack
+                Keil::Compiler:I/O:STDOUT:ITM:1.0.0
+                Keil ARM Compiler extensions
+   * Component: STDOUT Variant: ITM Version: 1.0.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.7.0.pack
+                Keil::Device:Startup:2.4.2
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.4.2
+
+<h2>Collection of Component include folders:</h2>
+  F:\TDD_Fold\TDD_Practise\UnityTest\RTE
+  D:\Program Files\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  D:\Program Files\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.7.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:4.3.0
+
+   * Component: Keil::Compiler:I/O:STDOUT:ITM:1.0.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil::Device:Startup:2.4.2
+      Source file:   MDK\Device\Source\ARM\STM32F40xxx_41xxx_OPT.s
+      Source file:   MDK\Device\Source\ARM\STM32F4xx_OTP.s
+      Include file:  Drivers\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f407xx.s
+      Source file:   Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\system_stm32f4xx.c
+</pre>
+</body>
+</html>

@@ -24,34 +24,20 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+#ifndef D_CircularBuffer_H
+#define D_CircularBuffer_H
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+typedef struct CircularBufferStruct * CircularBuffer;
+
+CircularBuffer CircularBuffer_Create(int capacity);
+void CircularBuffer_Destroy(CircularBuffer);
+int CircularBuffer_IsEmpty(CircularBuffer);
+int CircularBuffer_IsFull(CircularBuffer);
+int CircularBuffer_Put(CircularBuffer, int);
+int CircularBuffer_Get(CircularBuffer);
+int CircularBuffer_Capacity(CircularBuffer);
+void CircularBuffer_Print(CircularBuffer);
+int CircularBuffer_VerifyIntegrity(CircularBuffer);
+#endif  /* D_CircularBuffer_H */

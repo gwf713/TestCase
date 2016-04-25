@@ -24,34 +24,14 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
-
-
-#if 0 
-void RunAllTests(void)
+#include "IO.h"
+void IO_Write(ioAddress addr, ioData data)
 {
-    RUN_TEST_GROUP(LedDriver);
+    ioData * p = 0;
+    *(p + addr) = data;
 }
-#endif 
-
-#if 1 
-void RunAllTests(void)
+ioData IO_Read(ioAddress addr)
 {
-    RUN_TEST_GROUP(sprintf);
+    ioData * p = 0;
+    return *(p + addr);
 }
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif

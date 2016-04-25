@@ -24,34 +24,24 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#ifndef D_RtcTime_H
+#define D_RtcTime_H
+
+#include "common.h"
+
+typedef struct RtcTime RtcTime;
+
+RtcTime * RtcTime_Create(int daysSince1980);
+void RtcTime_Destroy(RtcTime *);
+int RtcTime_GetYear(RtcTime *);
+int RtcTime_GetMonth(RtcTime *);
+int RtcTime_GetDayOfMonth(RtcTime *);
+int RtcTime_GetDayOfWeek(RtcTime *);
+BOOL isLeapYear(int year);
+
+enum {
+    Sunday = 0, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
+};
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
-
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+#endif  /* D_RtcTime_H */

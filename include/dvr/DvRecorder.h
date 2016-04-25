@@ -24,34 +24,38 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
 
+#ifndef D_DvRecorder_H
+#define D_DvRecorder_H
 
-#if 0 
-void RunAllTests(void)
+typedef struct Program
 {
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
+    const char * name;
+    int repeat;
+    int channel;
+    int startHour;
+    int startMinute;
+    int durationInMinutes;
+    int priority;
+    int preferences;
+} Program;
 
-#if 1 
-void RunAllTests(void)
+enum {
+    ALL_EPISODES, NEW_EPISODES, REPEATED_EPISODES,
+    REPEAT, NO_REPEAT,
+    LOW_PRIORITY, MEDIUM_PRIORITY, HIGH_PRIORITY
+};
+
+typedef struct
 {
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+    int programCount;
+    Program programs[100];
+    /* etc... */
+} DvRecorder;
+
+void DvrRecorder_Create(void);
+void DvRecorder_RestorePrograms(DvRecorder *);
+
+void DvRecorder_Destroy(void);
+
+#endif  /* D_DvRecorder_H */

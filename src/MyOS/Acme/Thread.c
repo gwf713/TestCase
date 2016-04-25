@@ -24,34 +24,44 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#include "Thread.h"
+#include "common.h"
+#include <stdlib.h>
+#include <memory.h>
+#include "MyOsPrivate.h"
+#include "src/MyOS/Acme/AcmeOs.h"
 
+typedef struct ThreadStruct
+{
+    AcmeThreadStruct acmeThread;
+} ThreadStruct;
 
-#if 0 
-void RunAllTests(void)
+Thread Thread_Create(ThreadEntryFunction entry, void * parameter)
 {
-    RUN_TEST_GROUP(LedDriver);
+     Thread self = calloc(1, sizeof(ThreadStruct));
+     AcmeThread_create(&self->acmeThread, entry, parameter, 5, 1000);
+     return self;
 }
-#endif 
 
-#if 1 
-void RunAllTests(void)
+void Thread_Destroy(Thread self)
 {
-    RUN_TEST_GROUP(sprintf);
+    AcmeThread_waitEnd(&self->acmeThread);
+    free(self);
 }
-#endif 
-#if 0 
-void RunAllTests(void)
+
+void Thread_Start(Thread self)
 {
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
+    AcmeThread_start(&self->acmeThread);
 }
-#endif
+
+void Thread_Exit(void * result)
+{
+    result = result;
+    AcmeThread_exit(0);
+}
+
+void * Thread_Join(Thread self)
+{
+    AcmeThread_waitEnd(&self->acmeThread);
+    return NULL;
+}

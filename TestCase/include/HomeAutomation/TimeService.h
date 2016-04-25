@@ -24,34 +24,27 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+
+#ifndef D_TimeService_H
+#define D_TimeService_H
+
+typedef struct Time
+{
+    int minuteOfDay;
+    int dayOfWeek;
+} Time;
+
+void TimeService_Create(void);
+void TimeService_Destroy(void);
+void TimeService_GetTime(Time *);
+
+typedef void (*WakeUpCallback)(void);
+
+void TimeService_SetPeriodicAlarmInSeconds(
+        int seconds, WakeUpCallback);
+
+void TimeService_CancelPeriodicAlarmInSeconds(
+        int seconds, WakeUpCallback);
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
-
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+#endif  /* D_TimeService_H */

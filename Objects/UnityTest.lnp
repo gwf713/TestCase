@@ -1,0 +1,18 @@
+--cpu Cortex-M4.fp
+".\objects\alltests.o"
+".\objects\main.o"
+".\objects\unity_fixture.o"
+".\objects\unity.o"
+".\objects\runtimeerrorstub.o"
+".\objects\sprintftest.o"
+".\objects\sprintftestrunner.o"
+".\objects\leddrivertest.o"
+".\objects\leddrivertestrunner.o"
+".\objects\leddriver.o"
+".\objects\retarget_io.o"
+".\objects\startup_stm32f407xx.o"
+".\objects\system_stm32f4xx.o"
+--strict --scatter ".\Objects\UnityTest.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\UnityTest.map" -o .\Objects\UnityTest.axf

@@ -24,34 +24,84 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#include "Thread.h"
+#include "common.h"
+#include <stdlib.h>
+#include <memory.h>
+#include <pthread.h>
 
+/*
+ * Book readers... I discovered that a started flag is needed on
+ * some pthread systems.  This is not discussed in the book
+ */
 
-#if 0 
-void RunAllTests(void)
+typedef struct ThreadStruct
 {
-    RUN_TEST_GROUP(LedDriver);
+    ThreadEntryFunction entry;
+    void * parameter;
+    pthread_t pthread;
+    BOOL started;
+
+} ThreadStruct;
+
+Thread Thread_Create(ThreadEntryFunction f, void * parameter)
+{
+     Thread self = calloc(1, sizeof(ThreadStruct));
+     self->entry = f;
+     self->parameter = parameter;
+     self->started = FALSE;;
+     return self;
 }
-#endif 
 
-#if 1 
-void RunAllTests(void)
+void Thread_Destroy(Thread self)
 {
-    RUN_TEST_GROUP(sprintf);
+    if (self->started)
+        pthread_join(self->pthread, NULL);
+    free(self);
 }
-#endif 
-#if 0 
-void RunAllTests(void)
+
+void Thread_Start(Thread self)
 {
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
+    self->started = TRUE;
+    pthread_create(&self->pthread, NULL, self->entry, self->parameter);
+}
+
+void Thread_Join(Thread other, void ** result)
+{
+    if (other->started)
+        pthread_join(other->pthread, result);
+    other->started = FALSE;
+}
+
+#if 0
+typedef struct ThreadStruct
+{
+    ThreadEntryFunction entry;
+    void * parameter;
+    pthread_t pthread;
+} ThreadStruct;
+
+Thread Thread_Create(ThreadEntryFunction f, void * parameter)
+{
+     Thread self = calloc(1, sizeof(ThreadStruct));
+     self->entry = f;
+     self->parameter = parameter;
+     return self;
+}
+
+void Thread_Destroy(Thread self)
+{
+    pthread_join(self->pthread, NULL);
+    free(self);
+}
+
+void Thread_Start(Thread self)
+{
+    pthread_create(&self->pthread, NULL, self->entry, self->parameter);
+}
+
+void Thread_Join(Thread other, void ** result)
+{
+    pthread_join(other->pthread, result);
 }
 #endif

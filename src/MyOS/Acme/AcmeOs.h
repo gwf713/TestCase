@@ -24,34 +24,35 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#ifndef D_AcmeOs_H
+#define D_AcmeOs_H
+/*
+ * There is no Acme
+ * so pretend with these test stubs are really the acme header and implementation
+ *
+ * If you want to run this code instead of the POSIX version, change
+ * MakefileUnity.mk SRC_DIRS to build src/MyOS/Acme instead of src/MyOS/posix.
+ *
+ */
+typedef struct AcmeThreadStruct * AcmeThread;
+typedef int (*AcmeThreadEntryFunction)(void *);
+
+int AcmeThread_waitEnd(AcmeThread thread);
+void AcmeThread_start(AcmeThread thread);
+void AcmeThread_exit(int result);
+AcmeThread AcmeThread_currentThread(void);
+void AcmeThread_create(AcmeThread thread, AcmeThreadEntryFunction, void * p, int priority, int stacksize);
+
+/* private */
+
+typedef struct AcmeThreadStruct
+{
+    AcmeThreadEntryFunction entry;
+    void * parameter;
+    int priority;
+    int stacksize;
+} AcmeThreadStruct;
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
 
-#if 1 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(sprintf);
-}
-#endif 
-#if 0 
-void RunAllTests(void)
-{
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
-}
-#endif
+#endif  /* D_AcmeOs_H */

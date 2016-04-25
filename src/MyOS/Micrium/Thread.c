@@ -24,34 +24,73 @@
 /*-    www.renaissancesoftware.net james@renaissancesoftware.net       -*/
 /*- ------------------------------------------------------------------ -*/
 
-#include "unity_fixture.h"
+#include "Thread.h"
+#include "common.h"
+#include  <os.h>
+
+OS_MEM AppMemTask;
+
+typedef struct ThreadStruct
+{
+    ThreadEntryFunction entry;
+    void * parameter;
+    BOOL started;
+    OS_TCB TCB;
+    OS_SEM Sem;
+    CPU_STK Stk[APP_TASK_SIMPLE_STK_SIZE];
+} ThreadStruct;
 
 
-#if 0 
-void RunAllTests(void)
-{
-    RUN_TEST_GROUP(LedDriver);
-}
-#endif 
 
-#if 1 
-void RunAllTests(void)
+Thread Thread_Create (ThreadEntryFunction entry, void *parameter)
 {
-    RUN_TEST_GROUP(sprintf);
+    OS_ERR err;
+
+    Thread self = OSMemGet(&AppMemTask, &err);
+    self->entry = entry;
+    self->parameter = parameter;
+    self->started = FALSE;
+    OSSemCreate (&(self->Sem), "Test Sem", 0, &err);
+    return self;
 }
-#endif 
-#if 0 
-void RunAllTests(void)
+
+void  Thread_Destroy (Thread self)
 {
-    /*    RUN_TEST_GROUP(unity); */
-    RUN_TEST_GROUP(sprintf);
-    RUN_TEST_GROUP(LedDriver);
-    RUN_TEST_GROUP(UnityFixture);
-    RUN_TEST_GROUP(UnityCommandOptions);
-    RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
+    OS_ERR err;
+    OSSemPend(&(self->Sem), 0, OS_OPT_PEND_BLOCKING, 0, &err);
+    OSTaskDel(&(self->TCB), &err);
+    OSSemDel(&(self->Sem));
+    OSMemPut (&AppMemTask, self, &err);
 }
-#endif
+
+static void MicriumTaskShell(void *p_arg)
+{
+    Thread thread;
+    OS_ERR err;
+
+    thread = (Thread) p_arg;
+    thread->entry(thread->parameter);
+    OSSemPost(&(thread->Sem), OS_OPT_POST_ALL, &err);
+    while (DEF_ON)
+    {
+        OSTimeDlyHMSM(0, 0, 0, 100, OS_OPT_TIME_HMSM_STRICT, &err);
+    }
+}
+
+void Thread_Start(Thread self)
+{
+    OS_ERR err;
+
+    self->started = TRUE;
+
+    OSTaskCreate(&(self->TCB), "App Task",
+                 MicriumTaskShell, (void *)self,
+                 APP_TASK_SIMPLE_PRIO,
+                 self->Stk, APP_TASK_SIMPLE_STK_SIZE / 10,
+                 APP_TASK_SIMPLE_STK_SIZE,
+                 0,
+                 0,
+                 0,
+                 (OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
+                 &err);
+}
