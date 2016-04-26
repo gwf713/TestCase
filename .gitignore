@@ -31,3 +31,6 @@
 *.uvoptx
 JLinkSettings.ini
 JLinkLog.txt
+/Listings
+/Objects
+/*.uvoptx
