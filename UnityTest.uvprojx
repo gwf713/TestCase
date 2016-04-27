@@ -413,11 +413,6 @@
           <GroupName>Main</GroupName>
           <Files>
             <File>
-              <FileName>AllTests.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TestCase\AllTests.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
@@ -481,6 +476,26 @@
               <FileName>LedDriver.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\LedDriver\LedDriver.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>UnityFixture</GroupName>
+          <Files>
+            <File>
+              <FileName>unity_fixture_Test.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Unity\extras\fixture\test\unity_fixture_Test.c</FilePath>
+            </File>
+            <File>
+              <FileName>unity_fixture_TestRunner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Unity\extras\fixture\test\unity_fixture_TestRunner.c</FilePath>
+            </File>
+            <File>
+              <FileName>unity_output_Spy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Unity\extras\fixture\test\unity_output_Spy.c</FilePath>
             </File>
           </Files>
         </Group>

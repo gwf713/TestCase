@@ -31,7 +31,7 @@ int TestMain(int argc, const char* argv[])
     return UnityMain(argc, argv, RunAllTests);
 }
 
-#if 1 
+#if 0 
 static void RunAllTests(void)
 {
     RUN_TEST_GROUP(LedDriver);
@@ -45,7 +45,7 @@ static void RunAllTests(void)
 }
 #endif 
 
-#if 0 
+#if 1 
 static void RunAllTests(void)
 {
     /*    RUN_TEST_GROUP(unity); */
@@ -54,9 +54,9 @@ static void RunAllTests(void)
     RUN_TEST_GROUP(UnityFixture);
     RUN_TEST_GROUP(UnityCommandOptions);
     RUN_TEST_GROUP(LeakDetection);
-    RUN_TEST_GROUP(FakeTimeService);
-    RUN_TEST_GROUP(LightControllerSpy);
-    RUN_TEST_GROUP(LightScheduler);
-    RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
+    //RUN_TEST_GROUP(FakeTimeService);
+    //RUN_TEST_GROUP(LightControllerSpy);
+    //RUN_TEST_GROUP(LightScheduler);
+    //RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
 }
 #endif
