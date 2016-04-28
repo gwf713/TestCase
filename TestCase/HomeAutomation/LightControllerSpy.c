@@ -26,7 +26,8 @@
 
 
 #include "LightControllerSpy.h"
-#include "memory.h"
+//#include "memory.h"
+#include "string.h"
 
 static int lastId;
 static int lastState;

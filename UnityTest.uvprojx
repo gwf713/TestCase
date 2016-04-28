@@ -517,6 +517,21 @@
               <FileType>1</FileType>
               <FilePath>.\TestCase\HomeAutomation\FakeTimeServiceTest_runner.c</FilePath>
             </File>
+            <File>
+              <FileName>LightControllerSpy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\LightControllerSpy.c</FilePath>
+            </File>
+            <File>
+              <FileName>LightControllerSpyTest.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\LightControllerSpyTest.c</FilePath>
+            </File>
+            <File>
+              <FileName>LightControllerSpyTest_runner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\LightControllerSpyTest_runner.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
