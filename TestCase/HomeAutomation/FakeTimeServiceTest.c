@@ -31,7 +31,8 @@
 
 #include "FakeTimeService.h"
 #include "LightScheduler.h"
-#include "memory.h"
+
+//#include "memory.h"
 
 
 static int callBackCalled;

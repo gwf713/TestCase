@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Unity\src;.\Unity\extras\fixture\src;.\TestCase\mocks;.\TestCase\LedDriver;.\include\LedDriver;.\include\util</IncludePath>
+              <IncludePath>.\Unity\src;.\Unity\extras\fixture\src;.\TestCase\mocks;.\TestCase\LedDriver;.\include\LedDriver;.\include\util;.\TestCase\HomeAutomation;.\TestCase\include\HomeAutomation</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -496,6 +496,26 @@
               <FileName>unity_output_Spy.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Unity\extras\fixture\test\unity_output_Spy.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>HomeAutomation</GroupName>
+          <Files>
+            <File>
+              <FileName>FakeTimeService.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\FakeTimeService.c</FilePath>
+            </File>
+            <File>
+              <FileName>FakeTimeServiceTest.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\FakeTimeServiceTest.c</FilePath>
+            </File>
+            <File>
+              <FileName>FakeTimeServiceTest_runner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\FakeTimeServiceTest_runner.c</FilePath>
             </File>
           </Files>
         </Group>
