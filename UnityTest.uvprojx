@@ -503,6 +503,11 @@
           <GroupName>HomeAutomation</GroupName>
           <Files>
             <File>
+              <FileName>LightScheduler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\HomeAutomation\LightScheduler.c</FilePath>
+            </File>
+            <File>
               <FileName>FakeTimeService.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\TestCase\HomeAutomation\FakeTimeService.c</FilePath>
@@ -531,6 +536,16 @@
               <FileName>LightControllerSpyTest_runner.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\TestCase\HomeAutomation\LightControllerSpyTest_runner.c</FilePath>
+            </File>
+            <File>
+              <FileName>LightSchedulerTest.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\LightSchedulerTest.c</FilePath>
+            </File>
+            <File>
+              <FileName>LightSchedulerTest_runner.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TestCase\HomeAutomation\LightSchedulerTest_runner.c</FilePath>
             </File>
           </Files>
         </Group>

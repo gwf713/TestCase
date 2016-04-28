@@ -56,7 +56,7 @@ static void RunAllTests(void)
     RUN_TEST_GROUP(LeakDetection);
     RUN_TEST_GROUP(FakeTimeService);
     RUN_TEST_GROUP(LightControllerSpy);
-    //RUN_TEST_GROUP(LightScheduler);
+    RUN_TEST_GROUP(LightScheduler);
     //RUN_TEST_GROUP(LightSchedulerInitAndCleanup);
 }
 #endif
